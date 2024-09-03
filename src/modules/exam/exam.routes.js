@@ -13,7 +13,7 @@ const examRoutes = express.Router();
 
 
 examRoutes.route("/")
-    .post(uploadSingleFile('icon','categories')  , protectedRoutes,validation(addExamSchema), addExam)
+    .post(uploadSingleFile('icon','exams')  , protectedRoutes,validation(addExamSchema), addExam)
     .get(getAllExams)
 
 examRoutes.route("/:id")
