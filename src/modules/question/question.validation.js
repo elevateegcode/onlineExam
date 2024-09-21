@@ -2,8 +2,8 @@
 
 import Joi from 'joi';
 
-const addExamSchema = Joi.object({
-    title:Joi.string().min(3).max(20).pattern(/^[a-zA-Z ]*$/).required(),
+const addQuestionSchema = Joi.object({
+    title:Joi.string().min(3).max(20).alphanum().required(),
     icon:Joi.object({
         fieldname: Joi.string().required(),
         originalname: Joi.string().required(),
@@ -14,20 +14,19 @@ const addExamSchema = Joi.object({
         path: Joi.string().required(),
         size: Joi.number().max(5242880).required()
     }).required(),
-    category:Joi.string().hex().length(24).required(),
-    startDate:Joi.date().timestamp().greater('now').required(),
-    endDate:Joi.date().timestamp().min(Joi.ref('startDate')).required(),
-    duration: Joi.number().min(20).max(180).required()
+    type:Joi.string().hex().length(24).required(),
+    exam:Joi.string().length(24).required(),
+    choices:Joi.array().required(),
 
 
 });
 
 
-const examQueryIdSchema = Joi.object({
+const QuestionQueryIdSchema = Joi.object({
     id:Joi.string().hex().length(24).required()
 });
 
-const updateExamSchema = Joi.object({
+const updateQuestionSchema = Joi.object({
     id:Joi.string().hex().length(24).required(),
     title:Joi.string().min(3),
     icon:Joi.object({
@@ -40,15 +39,14 @@ const updateExamSchema = Joi.object({
         path: Joi.string().required(),
         size: Joi.number().max(5242880).required()
     }),
-    category:Joi.string().hex().length(24),
-    startDate:Joi.date().timestamp().greater('now'),
-    endDate:Joi.date().timestamp().min(Joi.ref('startDate')),
-    duration: Joi.number().min(20).max(180)
+    type:Joi.string().hex().length(24),
+    exam:Joi.string().length(24),
+    choices:Joi.array(),
 });
 export {
-    addExamSchema,
-    examQueryIdSchema,
-    updateExamSchema
+    addQuestionSchema,
+    QuestionQueryIdSchema,
+    updateQuestionSchema
 }
 
 

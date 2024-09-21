@@ -11,7 +11,10 @@ const schema = new mongoose.Schema({
         unique: true
     },
     icon:String,
-    type: String,
+    type: {
+        type: mongoose.Types.ObjectId,
+        ref:"Category"
+    },
     exam: {
         type: mongoose.Types.ObjectId,
         ref:"Exam"
@@ -26,9 +29,9 @@ schema.post("init", function(doc){
     doc.logo = process.env.BASE_URL +'uploads/' + doc.icon
 })
 
-const examModel = mongoose.model("Exam", schema);
+const QuetionModel = mongoose.model("Question", schema);
 
-export default examModel;
+export default QuetionModel;
 
 
 

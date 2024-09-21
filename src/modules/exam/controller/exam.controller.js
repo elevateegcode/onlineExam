@@ -18,11 +18,15 @@ const getAllExams = catchError(async(req,res) =>{
     res.json({message:"Done", allExams})
 })
 
-const getExamById = catchError(async(req,res) =>{
-    let exam = await examModel.findById(req.params.id);
+// const getExamById = catchError(async(req,res) =>{
+//     let exam = await examModel.findById(req.params.id);
+//     res.json({message:"Done", exam})
+// })
+
+const getExamWithQuestion = catchError(async(req,res) =>{
+    let exam = await examModel.findById(req.params.id).populate('questions')
     res.json({message:"Done", exam})
 })
-
 
 const updateExam= catchError(async(req,res) =>{
     if(req.body.icon)  req.body.icon = req.file.filename
@@ -40,7 +44,8 @@ const deleteExam= catchError(async(req,res) =>{
 export {
     addExam,
     getAllExams,
-    getExamById,
+    // getExamById,
     updateExam,
-    deleteExam
+    deleteExam,
+    getExamWithQuestion
 }
