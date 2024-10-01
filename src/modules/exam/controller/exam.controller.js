@@ -39,7 +39,11 @@ const deleteExam= catchError(async(req,res) =>{
     let deletedExam = await examModel.findByIdAndDelete(req.params.id)
     deletedExam && res.json({message:"Done", deletedExam})
     !deletedExam && res.json({message:"not found Exam"})
-})
+});
+
+const validateExam = catchError(async(req,res) =>{
+    
+});
 
 export {
     addExam,
@@ -47,5 +51,6 @@ export {
     // getExamById,
     updateExam,
     deleteExam,
-    getExamWithQuestion
+    getExamWithQuestion,
+    validateExam
 }

@@ -13,10 +13,14 @@ const addQuestionSchema = Joi.object({
         filename: Joi.string().required(),
         path: Joi.string().required(),
         size: Joi.number().max(5242880).required()
-    }).required(),
+    }),
     type:Joi.string().hex().length(24).required(),
     exam:Joi.string().length(24).required(),
-    choices:Joi.array().required(),
+    a1:Joi.string().required(),
+    a2:Joi.string().required(),
+    a3:Joi.string().required(),
+    a4:Joi.string().required(),
+    correctAns:Joi.array().required(),
 
 
 });
